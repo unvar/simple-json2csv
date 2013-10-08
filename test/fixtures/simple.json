@@ -1,0 +1,14 @@
+{
+  "fields": [{
+    "field": "name",
+    "header": "Name"
+  },
+  {
+    "field": "email",
+    "header": "Email Address"
+  }],
+  "data": [
+    { "name": "John Blue", "email": "john.blue@domain.com" },
+    { "name": "Lab Black", "email": "lab.black@domain.com" }
+  ]
+}
