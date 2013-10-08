@@ -19,5 +19,5 @@ var SimpleJson2Csv = require('simple-json2csv');
 var json2Csv = new SimpleJson2Csv(require('./fixtures/simple.json'));
 json2Csv.pipe(fs.createWriteStream(<path>));
 
-// hint: listen for finish on your writable stream
+// hint: listen for 'close' on the writable file stream
 ```

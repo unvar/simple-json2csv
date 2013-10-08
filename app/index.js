@@ -1,5 +1,5 @@
 "use strict";
-var Readable = require('stream').Readable,
+var Readable = require('stream').Readable || require('readable-stream'),
     util = require('util'),
     os = require('os');
 

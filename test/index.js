@@ -40,7 +40,7 @@ describe('simple-json2csv', function() {
     
     var json2Csv = new SimpleJson2Csv(this.options);
     var out = fs.createWriteStream(outCsv);
-    out.on('finish', function() {
+    out.on('close', function() {
       expect(fs.readFileSync(outCsv).toString())
         .to.equal(fs.readFileSync(path.join(__dirname, './fixtures/simple.csv')).toString());
       
