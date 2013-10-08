@@ -10,7 +10,15 @@
     "type": "git",
     "url": "https://github.com/unvar/simple-json2csv"
   },
-  "keywords": ["json", "csv", "json2csv", "simple", "stream", "transform", "nodejs"],
+  "keywords": [
+    "json",
+    "csv",
+    "json2csv",
+    "simple",
+    "stream",
+    "transform",
+    "nodejs"
+  ],
   "author": "Varun Dodla",
   "license": "BSD-3-Clause",
   "bugs": {
