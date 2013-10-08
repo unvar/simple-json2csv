@@ -1,7 +1,8 @@
 "use strict";
 var Readable = require('stream').Readable || require('readable-stream'),
     util = require('util'),
-    os = require('os');
+    os = require('os'),
+    _ = require('underscore');
 
 /**
  * Creates a new Json2Csv instance.
@@ -28,6 +29,11 @@ function Json2Csv(options) {
   this._data = options.data || options || [];
   this._fields = options.fields || [];
   this._transform = typeof(options.transform) === 'function' && options.transform;
+  
+  // enrich the fields
+  this._fields = this._fields.map(function(field) {
+    return _.isString(field) ? { name: field } : field;
+  });
 }
 util.inherits(Json2Csv, Readable);
 
@@ -53,7 +59,7 @@ Json2Csv.prototype._read = function() {
 
 Json2Csv.prototype._sendHeader = function() {
   var headers = this._fields.map(function(field) {
-    return field.header || field;
+    return field.header || field.name;
   });
   
   var ret = this._sendData(headers);
@@ -69,7 +75,7 @@ Json2Csv.prototype._sendRow = function(row) {
   
   var data = [];
   this._fields.forEach(function(field) {
-    data.push(row[field.field]);
+    data.push(row[field.name]);
   });
   
   return this._sendData(data);

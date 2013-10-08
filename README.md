@@ -16,8 +16,8 @@ It exposes a SimpleJson2Csv class with a constructor that accepts a single param
 
 ```
 data: the array of objects to be converted [{}...]
-fields: array of field objects [{ name: 'blah', header: 'Blah Header' }...] 
-        header property is optional in which case field property will be use for column name
+fields: array of field objects or simple strings [{ name: 'blah', header: 'Blah Header' }...] 
+        header property is optional in which case name property or string will be use for column name
 transform: the function which will be called on each object function(obj) { return transformed; }
  ```
 

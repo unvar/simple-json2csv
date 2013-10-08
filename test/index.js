@@ -53,6 +53,16 @@ describe('simple-json2csv', function() {
     // the actual magic
     json2Csv.pipe(out);
   });
+  
+  it('should handle string fields', function(done) {
+    this.options.fields = [ 'name', 'email'];
+    var json2Csv = new SimpleJson2Csv(this.options);    
+    collect(json2Csv, function(csv) {
+      expect(csv).to.equal(fs.readFileSync(path.join(__dirname, './fixtures/simpleNoHeaders.csv')).toString());
+      done();
+    });
+  });
+
 });
 
 /**

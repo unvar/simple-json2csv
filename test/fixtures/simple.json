@@ -1,10 +1,10 @@
 {
   "fields": [{
-    "field": "name",
+    "name": "name",
     "header": "Name"
   },
   {
-    "field": "email",
+    "name": "email",
     "header": "Email Address"
   }],
   "data": [
