@@ -1,8 +1,16 @@
 "use strict";
+// polyfills
+require('date-utils');
+
 var Readable = require('stream').Readable || require('readable-stream'),
     util = require('util'),
     os = require('os'),
     _ = require('underscore');
+
+
+
+// constants
+var DATE_FORMAT = 'MMM-DD-YYYY';
 
 /**
  * Creates a new Json2Csv instance.
@@ -59,7 +67,7 @@ Json2Csv.prototype._read = function() {
 
 Json2Csv.prototype._sendHeader = function() {
   var headers = this._fields.map(function(field) {
-    return field.header || field.name;
+    return '"' + (field.header || field.name) + '"';
   });
   
   var ret = this._sendData(headers);
@@ -74,19 +82,34 @@ Json2Csv.prototype._sendRow = function(row) {
   }
   
   var data = [];
+  var self = this;
   this._fields.forEach(function(field) {
-    data.push(row[field.name]);
+    data.push(self._format(row[field.name]));
   });
   
   return this._sendData(data);
 };
 
 Json2Csv.prototype._sendData = function(data) {
-  var ret = this.push('"' + data.join('","') + '"' + os.EOL);
+  var ret = this.push(data.join(',') + os.EOL);
   
   // keep a count of lines written
   this._sent++;
   return ret;  
+};
+
+Json2Csv.prototype._format = function(item) {
+  if (_.isFunction(item)) {
+    return this._format(item.call(null));
+  } else if (_.isDate(item)) {
+    return '"' + item.toFormat(DATE_FORMAT) + '"';
+  } else if (_.isNumber(item)) {
+    return item;
+  } else if (!item) {
+    return '""';
+  } else {
+    return '"' + item + '"';
+  }
 };
 
 module.exports = Json2Csv;

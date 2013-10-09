@@ -29,8 +29,8 @@ var SimpleJson2Csv = require('simple-json2csv');
 // create a new instance
 var json2Csv = new SimpleJson2Csv({
   fields: [ 
-    { field: "name", header: "Name" },
-    { field: "email", header: "Email Address" }
+    { name: "name", header: "Name" },
+    { name: "email", header: "Email Address" }
   ],
   data: [
     { name: "John Blue", email: "john.blue@domain.com" },

@@ -1,6 +1,6 @@
 {
   "name": "simple-json2csv",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A simple json to csv converter nodejs module",
   "main": "index.js",
   "scripts": {
@@ -26,7 +26,8 @@
   },
   "dependencies": {
     "readable-stream": "~1.1.9",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "date-utils": "~1.2.14"
   },
   "devDependencies": {
     "expect.js": "~0.2.0",
