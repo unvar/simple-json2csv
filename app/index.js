@@ -1,5 +1,6 @@
 "use strict";
 // polyfills
+require('./polyfills.js');
 require('date-utils');
 
 var Readable = require('stream').Readable || require('readable-stream'),
@@ -67,7 +68,7 @@ Json2Csv.prototype._read = function() {
 
 Json2Csv.prototype._sendHeader = function() {
   var headers = this._fields.map(function(field) {
-    return '"' + (field.header || field.name) + '"';
+    return '"' + (field.header || field.name.toTitleCase()) + '"';
   });
   
   var ret = this._sendData(headers);
